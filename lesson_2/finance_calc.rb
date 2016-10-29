@@ -11,7 +11,7 @@ def prompt(message)
   print "=> #{message}"
 end
 
-def financing
+def financing_amount
   $amount_financed = 0
   while $amount_financed <= 0 do
     puts "\n"
@@ -70,7 +70,7 @@ end
 def call_case
   case $answer
   when 1
-    financing
+    financing_amount
     calculate_payment
     output_payment
     call_case
@@ -85,7 +85,7 @@ def call_case
     output_payment
     call_case
   when 4 
-    financing
+    financing_amount
     percentage_rate
     loan_term
     calculate_payment
@@ -103,7 +103,7 @@ end
 print "\n"
 puts "*** Welcome to the Finance Calculator ***"
 
-financing
+financing_amount
   
 percentage_rate
   
