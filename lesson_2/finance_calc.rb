@@ -17,7 +17,8 @@ def calculate_payment(amount_financed, monthly_apr, term, apr, monthly_payment)
   if apr.zero?
     monthly_payment = amount_financed / term
   else
-    monthly_payment = amount_financed * (monthly_apr / (1 - ((1 + monthly_apr)**-term)))
+    monthly_payment = amount_financed * 
+                      (monthly_apr / (1 - ((1 + monthly_apr)**-term)))
   end
   puts "\n \n \n************************************************** \n \n \n"
   puts "Your monthly payment is $#{monthly_payment.round(2)}."
@@ -30,7 +31,8 @@ def display_case(amount_financed, apr, term)
   puts "2) The APR on your loan is #{apr}%"
   puts "3) Your loan has a #{term} month term"
   puts "************************************************** \n \n \n"
-  print "If you would like to change the information type the corresponding number, press 4 to change ALL, or any other key to exit: "
+  print "If you would like to change the information type the corresponding number, 
+         press 4 to change ALL, or any other key to exit: "
 end
 
 # set initial variables for program
