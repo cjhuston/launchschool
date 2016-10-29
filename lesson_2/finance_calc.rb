@@ -20,7 +20,6 @@ def financing_amount
   end
 end
     
-
 def percentage_rate
   loop do
     puts "\n"
@@ -41,7 +40,11 @@ def loan_term
 end
 
 def calculate_payment
-  $monthly_payment = $amount_financed * ($monthly_apr / (1 - ((1 + $monthly_apr)**-$term)))
+  if $apr == 0
+    $monthly_payment = $amount_financed / $term
+  else
+    $monthly_payment = $amount_financed * ($monthly_apr / (1 - ((1 + $monthly_apr)**-$term)))
+  end
 end
 
 def output_payment
