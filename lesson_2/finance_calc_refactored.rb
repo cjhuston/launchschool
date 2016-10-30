@@ -7,7 +7,7 @@ def prompt(message)
 end
 
 # this asks user for the loan amount
-def get_loan_amount
+def obtain_loan_amount
   loop do
     puts "\n"
     prompt("Please input the loan amount: ")
@@ -17,12 +17,12 @@ def get_loan_amount
 end
 
 # this asks the user for the APR
-def get_apr
+def obtain_apr
   loop do
     puts "\n"
     prompt("Please input the annual percentage rate (example - 5% is 5) : ")
     apr = gets.chomp.to_f
-    if apr == 0
+    if apr.zero?
       number = 0
     else
       number = ((apr / 100) / 12)
@@ -32,10 +32,11 @@ def get_apr
 end
 
 # this asks the user for the term of the loan
-def get_term
+def obtain_term
   loop do
     puts "\n"
-    prompt("Please input the loan term in months (example - 5 yrs is 60 months) : ")
+    prompt("Please input the loan term in months
+           (example - 5 yrs is 60 months) : ")
     number = gets.chomp.to_f
     return number if number >= 1
   end
@@ -61,56 +62,56 @@ def display_case(amount_financed, monthly_apr, term)
   puts "2) The APR on your loan is #{monthly_apr}%"
   puts "3) Your loan has a #{term} month term"
   puts "************************************************** \n \n \n"
-  print "If you would like to change the information type the corresponding number, press 4 to change ALL, or any other key to exit: "
+  print "If you would like to change the information type the corresponding
+        number, press 4 to change ALL, or any other key to exit: "
 end
 
 def change_inputs(answer, amount_financed, monthly_apr, term)
   loop do
     case answer
-      when 1 # user chose to re-input the loan amount
-        amount_financed = get_loan_amount
-        calculate_payment(amount_financed, monthly_apr, term)
-        display_case(amount_financed, monthly_apr, term)
-        answer = gets.chomp.to_i
-        change_inputs(answer, amount_financed, monthly_apr, term)
-      when 2 # user chose to re-input the APR
-        monthly_apr = get_apr
-        calculate_payment(amount_financed, monthly_apr, term)
-        display_case(amount_financed, monthly_apr, term)
-        answer = gets.chomp.to_i
-        change_inputs(answer, amount_financed, monthly_apr, term)
-      when 3 # user chose to re-input the loan term
-        term = get_term
-        calculate_payment(amount_financed, monthly_apr, term)
-        display_case(amount_financed, monthly_apr, term)
-        answer = gets.chomp.to_i
-        change_inputs(answer, amount_financed, monthly_apr, term)
-      when 4 # user wishes to re-input all items
-        amount_financed = get_loan_amount
-        monthly_apr = get_apr
-        term = get_term
-        calculate_payment(amount_financed, monthly_apr, term)
-        display_case(amount_financed, monthly_apr, term)
-        answer = gets.chomp.to_i
-        change_inputs(answer, amount_financed, monthly_apr, term)
-      else
-        puts "\n \n************************************************** \n \n"
-        puts "Thank you for using the Finance Calculator! \n"
-        puts "\n \n************************************************** \n \n"
+    when 1 # user chose to re-input the loan amount
+      amount_financed = obtain_loan_amount
+      calculate_payment(amount_financed, monthly_apr, term)
+      display_case(amount_financed, monthly_apr, term)
+      answer = gets.chomp.to_i
+      change_inputs(answer, amount_financed, monthly_apr, term)
+    when 2 # user chose to re-input the APR
+      monthly_apr = obtain_apr
+      calculate_payment(amount_financed, monthly_apr, term)
+      display_case(amount_financed, monthly_apr, term)
+      answer = gets.chomp.to_i
+      change_inputs(answer, amount_financed, monthly_apr, term)
+    when 3 # user chose to re-input the loan term
+      term = obtain_term
+      calculate_payment(amount_financed, monthly_apr, term)
+      display_case(amount_financed, monthly_apr, term)
+      answer = gets.chomp.to_i
+      change_inputs(answer, amount_financed, monthly_apr, term)
+    when 4 # user wishes to re-input all items
+      amount_financed = obtain_loan_amount
+      monthly_apr = obtain_apr
+      term = obtain_term
+      calculate_payment(amount_financed, monthly_apr, term)
+      display_case(amount_financed, monthly_apr, term)
+      answer = gets.chomp.to_i
+      change_inputs(answer, amount_financed, monthly_apr, term)
+    else
+      puts "\n \n************************************************** \n \n"
+      puts "Thank you for using the Finance Calculator! \n"
+      puts "\n \n************************************************** \n \n"
     end
     break if answer != 1 || answer != 2 || answer != 3 || answer != 4
   end
 end
 
-
 # main code
 puts "\n \n \n Welcome to the Finance Calculator!!! \n \n"
 
-amount_financed = get_loan_amount
+amount_financed = obtain_loan_amount
 
-monthly_apr = get_apr
+monthly_apr = obtain_apr
 
-term = get_term
+term = obtain_term
 
 calculate_payment(amount_financed, monthly_apr, term)
 
